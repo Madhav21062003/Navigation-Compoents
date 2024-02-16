@@ -1,10 +1,15 @@
 package com.madhavsolanki.navigationcomponents
 
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.navigation.NavDeepLinkBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.madhavsolanki.navigationcomponents.databinding.FragmentChooseRecieverBinding
@@ -35,7 +40,19 @@ class ChooseRecieverFragment : Fragment() {
                     .setPopEnterAnim(R.anim.slide_in_left)
                     .setPopExitAnim(R.anim.slide_out_left)
                     .build()
+
                 val receiverName = etRecieverName.text.toString()
+
+
+//                 Implementing Explicit Deep link
+                val pendingIntent =NavDeepLinkBuilder(requireContext())
+                    .setGraph(R.navigation.main_nav_graph)
+                    .setDestination(R.id.sendCashFragment)
+                    .setArguments(SendCashFragmentArgs(receiverName,100L).toBundle())
+
+                    .createPendingIntent()
+//
+                showNotification(pendingIntent, receiverName)
 
                 // We send our data using Bundle
 //                val args = Bundle()
@@ -52,5 +69,17 @@ class ChooseRecieverFragment : Fragment() {
             }
 
         }
+    }
+
+    private fun showNotification(pendingIntent: PendingIntent, receiverName: String) {
+            val notification = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_notifications)
+                .setContentTitle("Want to Complete Your Transaction")
+                .setContentText("Send money to $receiverName")
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .build()
+
+        NotificationManagerCompat.from(requireContext()).notify(102, notification)
     }
 }

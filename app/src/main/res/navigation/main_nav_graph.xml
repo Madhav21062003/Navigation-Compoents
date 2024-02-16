@@ -56,7 +56,7 @@
         android:id="@+id/sendCashFragment"
         android:name="com.madhavsolanki.navigationcomponents.SendCashFragment"
         android:label="Send Cash to {receiverName}"
-        tools:layout="@layout/fragment_send_cash" >
+        tools:layout="@layout/fragment_send_cash">
         <argument
             android:name="receiverName"
             app:argType="string" />
@@ -71,6 +71,14 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <deepLink
+            android:id="@+id/deepLink4"
+            app:uri="www.navcomponent.com/{receiverName}/{amount}"
+            app:action="android.intent.action.MY_ACTION"
+            app:mimeType="type/subtype"
+            />
+
+
     </fragment>
     <dialog
         android:id="@+id/confirmDialogFragment"

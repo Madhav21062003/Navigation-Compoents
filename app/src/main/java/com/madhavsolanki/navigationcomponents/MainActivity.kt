@@ -1,5 +1,6 @@
 package com.madhavsolanki.navigationcomponents
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -13,6 +14,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.madhavsolanki.navigationcomponents.databinding.ActivityMainBinding
 
+// This is the MainActivity class that represents the main entry point of our application.
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
@@ -22,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
         setSupportActionBar(binding.toolbar)
 
 
@@ -61,5 +65,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        navController.handleDeepLink(intent)
     }
 }

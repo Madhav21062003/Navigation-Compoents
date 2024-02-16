@@ -1,5 +1,6 @@
 package com.madhavsolanki.navigationcomponents
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,7 +16,7 @@ class SendCashFragment : Fragment() {
 
     private var _binding: FragmentSendCashBinding? = null
     private val binding get() = _binding!!
-    private val args    : SendCashFragmentArgs by navArgs()
+    val args    : SendCashFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +40,9 @@ class SendCashFragment : Fragment() {
 
             // With null safety using safeargs
             val receiverName = args.receiverName
+            val amount = args.amount
+            tvReciever.text = "Send Cash to $receiverName\n$amount"
 
-            tvReciever.text = "Send Cash to $receiverName"
 
 
             sendBtn.setOnClickListener {
@@ -64,6 +66,7 @@ class SendCashFragment : Fragment() {
                 findNavController().popBackStack(R.id.homeFragment, true)
             }
         }
+
     }
 
 
