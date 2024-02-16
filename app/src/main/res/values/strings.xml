@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Navigation Components</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_frag_title"> Welcome to\nAndroid Bank</string>
+    <string name="btn_send_money">SEND MONEY</string>
+    <string name="btn_view_balance">VIEW BALANCE</string>
+    <string name="btn_view_transactions">VIEW TRANSACTIONS</string>
+    <string name="your_balance">Your Balance is Rs 50000</string>
+</resources>
